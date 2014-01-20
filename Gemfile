@@ -38,9 +38,12 @@ gem 'jquery-rails'
 # gem 'debugger'
 group :test, :development do
   gem "rspec-rails", "~> 2.6"
-  gem "mongoid-rspec", '1.4.5', :require=>false
-  gem 'simplecov'
-  gem 'simplecov-rcov'
-  gem 'mocha'
-  #gem 'sqlite3'
+#  gem "mongoid-rspec", '1.4.5', :require=>false
+#  gem 'simplecov'
+#  gem 'simplecov-rcov'
+#  gem 'mocha'
+   gem 'webrat'
+   gem 'nokogiri'
+   gem 'capybara'
+#  gem 'sqlite3'
 end
