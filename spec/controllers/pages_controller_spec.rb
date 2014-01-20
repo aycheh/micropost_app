@@ -12,7 +12,7 @@ describe PagesController do
     end
     it "sould have the right title" do
       get 'home'
-      response.should have_selector("title" , :content =>"Ruby On Rails tutorial micropost_app | Home")
+      response.should have_selector("title" , :content =>"Ruby On Rails tutorial micropost_app | home")
     end
     it "sould have the <h1> tag" do
       get 'home'
