@@ -4,32 +4,14 @@
 		<title><%= title %></title>	
 	</head>
 	<%= csrf_meta_tag %>
-	<!--[if it IE 9]>
-		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-	<![endif]-->
-	<%= stylesheet_link_tag 'blueprint/screen.css', :media => 'screen' %>
-	<%= stylesheet_link_tag 'blueprint/print.css' , :media => 'print'%>
-	<!--[if it IE 8]>
-		 <%= stylesheet_link_tag 'blueprint/ie.css' %> 
-	<![endif]-->
-	<%= stylesheet_link_tag 'custom' , :media => 'screen' %>
+	<%= render 'layouts/stylesheets'%>
 <body>
 	<div class = "container">
-		<header>
-			<%= image_tag("logo.png" , :alt => "Micropost App" , :class => "round")%>
-			<nav class = "round">
-				<ul>
-					<li> <%= link_to "Home" , '#'%></li>
-					<li> <%= link_to "Help" , '#'%></li>
-					<li> <%= link_to "Sign In" , '#'%></li>
-				</ul>
-			</nav>
-			
-		</header>
+		<%= render 'layouts/header'%>
 		<section class = "round">
 			<%= yield %>
 		</section>
-
+	<%= render 'layouts/footer'%>
 	</div>
 </body>
 </html>

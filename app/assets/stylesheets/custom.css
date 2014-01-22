@@ -98,7 +98,18 @@ a.signup_button {
 }
 
 
+/*footer*/
+footer {
+	text-align: center;
+	margin: 10px;
+	width: 710px;
+	margin-left: auto;
+	margin-right: auto;
+}
 
+footer nav {
+	float: none;
+}
 
 
 
