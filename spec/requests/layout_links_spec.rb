@@ -12,17 +12,43 @@ require 'spec_helper'
       get '/'
       response.should have_selector('title' , :content => "home")
     end
+    
     it "should have a contact page at '/contact" do
       get '/contact'
       response.should have_selector('title' , :content => "contact")
     end
+    
     it "should have a about page at '/about" do
       get '/about'
       response.should have_selector('title' , :content => "about")
     end
+    
       it "should have a help page at '/help" do
        get '/help'
        response.should have_selector('title' , :content => "help")
+     end
+     
+     it "should have a Sign up page at '/signup" do
+       get '/signup'
+       response.should have_selector('title' , :content => "Sign up")
+     end
+     
+     it "should have the rigth links on the layout" do
+       visit root_path
+       response.should have_selector('title', :content => "home")
+       
+       click_link "about"
+       response.should have_selector('title', :content => "about")
+       
+       click_link "contact"
+       response.should have_selector('title', :content => "contact")
+       
+       click_link "home"
+       response.should have_selector('title', :content => "home")
+       
+       click_link "Sign up now!"
+       response.should have_selector('title', :content => "Sign up")
+       response.should have_selector('a[href="/"]>img')
      end
     
 end
