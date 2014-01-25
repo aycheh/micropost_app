@@ -7,10 +7,16 @@ development:
 #  adapter: sqlite3
   adapter: postgresql
 #  database: db/development.sqlite3
-  database: micropost_db
+#  database: micropost_db
   pool: 5
   timeout: 5000
-
+#################
+Host : ec2-54-204-2-255.compute-1.amazonaws.com
+Database : d44t5vtgodmm1r
+User	: emqhomainsdotd
+Port	: 5432
+Passwor : 1Czy-f9202aLRLR4hGoSmkKdRK
+##################
 ##################
 #    host: int16
 #    database: Kona18_3_2012_7_8
@@ -37,6 +43,11 @@ production:
 #  adapter: sqlite3
   adapter: postgresql
 #  database: db/production.sqlite3
-  database: micropost_db
+#  database: micropost_db
   pool: 5
   timeout: 5000
+  Host : ec2-54-204-2-255.compute-1.amazonaws.com
+  Database : d44t5vtgodmm1r
+  User    : emqhomainsdotd
+  Port    : 5432
+  Passwor : 1Czy-f9202aLRLR4hGoSmkKdRK
