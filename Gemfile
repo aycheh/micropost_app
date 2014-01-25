@@ -5,7 +5,7 @@ gem 'rails_12factor'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-# gem 'sqlite3'
+gem 'sqlite3'
 gem 'pg'
 
 
@@ -46,5 +46,5 @@ group :test, :development do
    gem 'webrat'
    gem 'nokogiri'
    gem 'capybara'
-#  gem 'sqlite3'
+   gem 'sqlite3'
 end
