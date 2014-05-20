@@ -1,3 +1,8 @@
+PATH
+  remote: gems
+  specs:
+    annotate-models (1.0.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -135,6 +140,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  annotate-models (= 1.0.0)!
   capybara
   coffee-rails (~> 3.2.1)
   jquery-rails
