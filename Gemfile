@@ -58,7 +58,7 @@ group :production do
    gem 'webrat'
    gem 'nokogiri'
    gem 'capybara'
-   #gem 'pg'
+   gem 'pg'
 end
 
 
