@@ -52,7 +52,7 @@ group :test, :development do
 end
 
 group :production do
-  gem "rspec-rails", "~> 2.6"
+#  gem "rspec-rails", "~> 2.6"
 #  gem "mongoid-rspec", '1.4.5', :require=>false
 #  gem 'simplecov'
 #  gem 'simplecov-rcov'
