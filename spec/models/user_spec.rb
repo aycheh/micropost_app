@@ -21,7 +21,7 @@ describe User do
     long_name.should_not be_valid
   end
   it "should rejacet name that are too short" do
-  short_name = "a" * 2
+  short_name = "a" * 1
   short_name = User.new(@attr.merge(:name => short_name))
   short_name.should_not be_valid
   end
@@ -43,5 +43,11 @@ describe User do
     old_user = User.create!(@attr)
     new_user = User.new(@attr)
     new_user.should_not be_valid
+  end
+  it "should reject email addresses identical up to case , it well check case sensetiv" do
+    upcase_email = @attr[:email].upcase!
+    User.create!(@attr.merge(:email => upcase_email))
+    douplecat_user = User.new(@attr)
+    douplecat_user.should_not be_valid
   end
 end
