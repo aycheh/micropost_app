@@ -1,5 +1,7 @@
 class User < ActiveRecord::Base
-  #attr_accessor   :password ,:password_confirmation
+  # #virtual attributes #
+  
+#  attr_accessor   :password ,:password_confirmation
   attr_accessor   :password 
   attr_accessible :email, :name , :password , :password_confirmation
   email_regex = /\A[\w.+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
@@ -10,9 +12,10 @@ class User < ActiveRecord::Base
                     :format => {:with => email_regex},
                     :uniqueness => {:case_sensitiv => false}
   validates :password , :presence => true, 
-                        :confirmation => true #,
-#  validates :password , :length => {:minimum  => 10 ,:maximum => 50 }
-                        #:length => {:within => 6..40}
+                        :confirmation => true ,
+                        :length => {:minimum  => 10 ,:maximum => 50 },
+                        :length => {:within => 6..40}
+#  validates :password , :encrypted_password => true
 
                     
 end

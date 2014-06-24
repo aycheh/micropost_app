@@ -72,17 +72,17 @@ describe User do
       User.new(@attr.merge(:password_confirmation => "invalid")).should_not be_valid
     end
   end
-  # it "should reject too short password" do
-    # short_password = "a" * 5
-    # hash = @attr.merge(password => short_password , :password_confirmation => short_password)
-    # User.new(hash).should_not be_valid
-  # end
-#   
-  # it "should reject too long password" do
-    # long_password = "a" * 41
-    # hash = @attr.merge(password => long_password , :password_confirmation => long_password)
-    # User.new(hash).should_not be_valid
-  # end
+   it "should reject too short password" do
+     short_password = "a" * 5
+     hash = @attr.merge(:password => short_password , :password_confirmation => short_password)
+     User.new(hash).should_not be_valid
+   end
+   
+   it "should reject too long password" do
+     long_password = "a" * 41
+     hash = @attr.merge(:password => long_password , :password_confirmation => long_password)
+     User.new(hash).should_not be_valid
+   end
  describe "password encryption" do
    before(:each)do
    @user = User.create!(@attr)
