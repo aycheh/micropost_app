@@ -15,7 +15,7 @@ class User < ActiveRecord::Base
                         :confirmation => true ,
                         :length => {:minimum  => 10 ,:maximum => 50 },
                         :length => {:within => 6..40}
-#  validates :password , :encrypted_password => true
+
 
                     
 end
