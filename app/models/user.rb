@@ -22,19 +22,35 @@ class User < ActiveRecord::Base
     self.encrypted_password == encrypt(submitted_password)
   end
   
+  class << self
+   def User.authenticate(email, submitted_password)
+   user = User.find_by_email(email)
+   return nil if user.nil?
+   return user if user.has_password?(submitted_password)  
+   end
+  end
+#######################
+# it is possible to implement also like this (for User authenticate method)
+   # def User.authenticate(email, submitted_password)
+   # user = User.find_by_email(email)
+   # return nil if user.nil?
+   # return user if user.has_password?(submitted_password)  
+   # end
+  
+#######################
   private 
   
   def encrypt_password
     self.salt = make_salt if new_record?
-    self.encrypted_password = encrypt(self.password)
+    self.encrypted_password = encrypt(password)
   end
   
   def encrypt(string)
-      secure_hash("#{self.salt}--{string}")
+      secure_hash("#{self.salt}--#{string}")
   end
   
   def make_salt 
-    secure_hash("#{Time.now.utc}--{self.password}")
+    secure_hash("#{Time.now.utc}--#{password}")
   end
   
   def secure_hash(string)
