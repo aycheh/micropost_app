@@ -22,7 +22,7 @@ group :assets do
 end
 
 gem 'jquery-rails'
-
+gem 'gravatar_image_tag'
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 
@@ -47,6 +47,8 @@ group :test, :development do
    gem 'nokogiri'
    gem 'capybara'
    gem 'sqlite3'
+#   gem 'annotate-models'
+#   gem 'annotate-models','1.0.0', :path => "/home/asher/Source/my_apps/micropost_app/gems/"
 end
 
 group :production do
@@ -58,7 +60,13 @@ group :production do
    gem 'webrat'
    gem 'nokogiri'
    gem 'capybara'
+<<<<<<< HEAD
    gem 'pg'
+=======
+   
+ #gem 'factory_girl_rails', '1.0'
+#   gem 'pg'
+>>>>>>> modeling-userd
 end
 
 
