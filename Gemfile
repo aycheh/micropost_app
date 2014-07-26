@@ -60,7 +60,7 @@ group :production do
    gem 'webrat'
    gem 'nokogiri'
    gem 'capybara'
-#   gem 'pg'
+   gem 'pg'
 
    
  #gem 'factory_girl_rails', '1.0'
