@@ -60,13 +60,12 @@ group :production do
    gem 'webrat'
    gem 'nokogiri'
    gem 'capybara'
-<<<<<<< HEAD
-   gem 'pg'
-=======
+#   gem 'pg'
+
    
  #gem 'factory_girl_rails', '1.0'
 #   gem 'pg'
->>>>>>> modeling-userd
+
 end
 
 
