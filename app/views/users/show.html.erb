@@ -6,15 +6,16 @@
 				<%= @user.name%> 	
 			</h1>
 		</td>
-	</tr>
-	<td class="sidebar 	round">
+	
+	 	<td class="sidebar round">
 		
 			<strong> name </strong> <%= @user.name%> <br/>
 			<!-- you can do like this
 				             <strong>URL</strong> <%= link_to "/users/#{@user.id}", "/users/#{@user.id}"%>>
 			<!--or like this <strong>URL</strong> <%= link_to user_path(@user), user_path(@user)%> -->
 			<strong> URL  </strong> <%= link_to user_path(@user), user_path(@user)%>
-	</td>
+		</td>
+	</tr>
 </table>
 
 

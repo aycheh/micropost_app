@@ -42,8 +42,9 @@ require 'spec_helper'
     end
     it "should have the rigth URL " do
       get :show ,:id => @user
-      response.should have_selector('h1>a', :content => user_path(@user),
+      response.should have_selector('td>a', :content => user_path(@user),
                                             :href    => user_path(@user) )
+     end                                            
   end
   
   
