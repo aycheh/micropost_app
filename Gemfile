@@ -22,7 +22,7 @@ group :assets do
 end
 
 gem 'jquery-rails'
-
+gem 'gravatar_image_tag'
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 
@@ -60,6 +60,7 @@ group :production do
    gem 'webrat'
    gem 'nokogiri'
    gem 'capybara'
+   
  #gem 'factory_girl_rails', '1.0'
 #   gem 'pg'
 end

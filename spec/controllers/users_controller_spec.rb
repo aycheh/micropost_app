@@ -23,9 +23,22 @@ require 'spec_helper'
       get :show , :id => @user
       response.should be_success
     end
-    it "should find the writ user" do
+    it "should find the right user" do
       get :show , :id =>@user
       assigns(:user).should == @user
+    end
+    it "show the right title" do
+      get :show ,:id => @user
+      response.should have_selector('title', :content =>@user.name)
+    end
+    
+    it "should have the user's name in the <h1> " do
+      get :show ,:id => @user
+      response.should have_selector('h1', :content =>@user.name)
+    end
+    it "should have the profile name in the <h1> " do
+      get :show ,:id => @user
+      response.should have_selector('h1>img', :class =>"gravatar")
     end
   end
   
