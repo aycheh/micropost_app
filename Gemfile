@@ -52,20 +52,10 @@ group :test, :development do
 end
 
 group :production do
-#  gem "rspec-rails", "~> 2.6"
-#  gem "mongoid-rspec", '1.4.5', :require=>false
-#  gem 'simplecov'
-#  gem 'simplecov-rcov'
-#  gem 'mocha'
    gem 'webrat'
    gem 'nokogiri'
    gem 'capybara'
-   gem 'pg'
-
-   
- #gem 'factory_girl_rails', '1.0'
-#   gem 'pg'
-
+   gem 'pg', '~> 0.17.1'
 end
 
 
