@@ -53,11 +53,25 @@ require 'spec_helper'
       get :new
       response.should be_success
     end
-    it "sould have the right title" do
+    it "should have the right title" do
       get :new
       response.should have_selector("title" , 
                                     :content =>"Sign up")
     end
   end
+  describe "POST 'create'" do
+     
+     describe "POST 'create'" do
+      before(:eatch) do
+        @attr = {:name => "" , :email => "", 
+                 :password => "", 
+                 :password_confirmation => ""}
+      end
+      it "should have the right title " do
+        
+      end
+  end 
+  
+  end 
 
 end
