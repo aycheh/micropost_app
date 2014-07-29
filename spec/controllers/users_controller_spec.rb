@@ -81,6 +81,27 @@ require 'spec_helper'
           end.should_not change(User, :count)
         end
      end
+  describe "seccess" do
+     before(:each) do
+          @attr = {:name => "new user" , :email => "new@user.com", 
+                 :password => "foobar", 
+                 :password_confirmation => "foobar"}
+       end
+       it "should create user" do
+         lambda do
+           post :create,  :user => @attr
+         end.should change(User, :count).by(1)
+       end
+       it "should redirect to the user show page" do
+         post :create,  :user => @attr
+         response.should redirect_to(user_path(assigns(:user)))
+       end
+       it "should show a flash wellcome message" do
+         post :create,  :user => @attr
+         flash[:success].should =~ /wellcome to micropost app/i
+         
+       end
+     end  
   end
 
 end
