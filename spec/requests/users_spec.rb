@@ -22,7 +22,7 @@ describe "Users" do
     end
   end
   describe "Sign up success for user" do
-      describe "seccess" do
+      describe "success" do
         it "should create new user" do
           lambda do
         visit signup_path
@@ -31,7 +31,7 @@ describe "Users" do
         fill_in "Password",         :with => "foobar"
         fill_in "Confirmation",     :with => "foobar"
         click_button
-        response.should render_template('users/new')
+        response.should render_template('users/show')
         response.should have_selector('div.flash.success' , :content => "wellcome")
         #response.should have_selector('div' , :content => "wellcome")
         end.should change(User, :count).by(1)
