@@ -37,5 +37,34 @@ describe SessionsController do
       end
     end
   end
-
+  describe "seccess" do
+    before(:each) do
+      @user = User.create!(
+                          :name => "asher ayche" , 
+                          :email => "asher.aycheh@gmail.com" , 
+                          :password => "foobar1" , 
+                          :password_confirmation => "foobar1")
+      @attr = {:email => @user.email, :password =>@user.password}                          
+    end
+    it "should the user sign in" do
+      post create, :session => @attr
+      controller.should be_signed_in
+      controller.current_user.should == @user
+    end
+    it "should redirect to user show page" do
+      post create, :session => @attr
+      response.should redirect_to(user_path(@user))
+    end
+  end
+    
 end
+
+
+
+
+
+
+
+
+
+

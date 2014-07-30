@@ -14,6 +14,8 @@ class SessionsController < ApplicationController
     render 'new'
     else
       # Hendle successful sign in.
+      sign_in user
+      redirect user
     end
   end
   
