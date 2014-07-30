@@ -2,11 +2,10 @@ require 'spec_helper'
 
 describe "Users" do
   describe "GET /users" do
-    # it "works! (now write some real specs)" do
-      # # Run the generator again with the --webrat flag if you want to use webrat methods/matchers
-      # get users_index_path
-      # response.status.should be(200)
-    # end
+    it "should render signup_path for new user" do
+      get signup_path
+      response.status.should be(200)
+    end
     describe "Sign up failure for user " do
       it "should not create new user" do
       lambda do
@@ -17,7 +16,7 @@ describe "Users" do
         fill_in "Confirmation",     :with => ""
         click_button
         response.should render_template('users/new')
-        response.should have_selector('div#error_explanation')
+        response.should have_selector('div#error_explanation' , :content => "error")
       end.should_not change(User, :count)
       end
     end
@@ -34,8 +33,14 @@ describe "Users" do
         click_button
         response.should render_template('users/new')
         #response.should have_selector('div#flash.success' , :content => "wellcome")
+        response.should have_selector('div' , :content => "wellcome")
         end.should change(User, :count).by(1)
       end
       end
     end
 end
+
+
+
+
+
