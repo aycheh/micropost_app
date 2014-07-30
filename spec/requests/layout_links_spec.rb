@@ -34,7 +34,7 @@ require 'spec_helper'
      end
      ##
      it "should have a Sign in page at '/signin" do
-       get '/sigin'
+       get '/signin'
        response.should have_selector('title' , :content => "Sing in")
      end
      # it "should have a Sign up page at '/signup" do

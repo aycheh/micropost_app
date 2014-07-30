@@ -11,7 +11,7 @@ MicropostApp::Application.routes.draw do
   match '/help', :to => 'pages#help'
   match '/about', :to => 'pages#about'
   match '/signup', :to => 'users#new'
-  match '/sigin', :to => 'sessions#new'
+  match '/signin', :to => 'sessions#new'
   match '/sigout', :to => 'sessions#:destroy'
   
 
