@@ -32,8 +32,8 @@ describe "Users" do
         fill_in "Confirmation",     :with => "foobar"
         click_button
         response.should render_template('users/new')
-        #response.should have_selector('div#flash.success' , :content => "wellcome")
-        response.should have_selector('div' , :content => "wellcome")
+        response.should have_selector('div.flash.success' , :content => "wellcome")
+        #response.should have_selector('div' , :content => "wellcome")
         end.should change(User, :count).by(1)
       end
       end
