@@ -32,7 +32,16 @@ require 'spec_helper'
        get '/signup'
        response.should have_selector('title' , :content => "Sign up")
      end
-     
+     ##
+     it "should have a Sign in page at '/signin" do
+       get '/sigin'
+       response.should have_selector('title' , :content => "Sing in")
+     end
+     # it "should have a Sign up page at '/signup" do
+       # get '/signup'
+       # response.should have_selector('title' , :content => "Sign up")
+     # end
+     ##
      it "should have the rigth links on the layout" do
        visit root_path
        response.should have_selector('title', :content => "home")
