@@ -27,9 +27,9 @@ describe SessionsController do
         post :create, :session => @attr
         response.should render_template('new')
       end
-      it " " do
+      it "should have an error message" do
         post :create, :session => @attr
-        flash.now[:error].should =~/Invalid/
+        flash.now[:error].should =~/Invalid/i
       end
       it "should have the rigth title" do
         post :create, :session => @attr
@@ -37,23 +37,28 @@ describe SessionsController do
       end
     end
   end
-  describe "seccess" do
+  describe "success" do
     before(:each) do
       @user = User.create!(
                           :name => "asher ayche" , 
-                          :email => "asher.aycheh@gmail.com" , 
+                          :email => "ashera.aycheh@gmail.com" , 
                           :password => "foobar1" , 
                           :password_confirmation => "foobar1")
       @attr = {:email => @user.email, :password =>@user.password}                          
     end
-    it "should the user sign in" do
-      post create, :session => @attr
+    it  "should sign the user in" do
+      post :create, :session => @attr
       controller.should be_signed_in
       controller.current_user.should == @user
     end
-    it "should redirect to user show page" do
-      post create, :session => @attr
+    it "should redirect to the user show page" do
+      post :create, :session => @attr
       response.should redirect_to(user_path(@user))
+    end
+    
+    it "should current user  == @user" do
+      post :create, :session => @attr
+      controller.current_user.should == @user
     end
   end
     

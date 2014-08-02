@@ -1,6 +1,5 @@
 class User < ActiveRecord::Base
-# virtual attributes
-  
+# virtual attributes  
 # attr_accessor   :password ,:password_confirmation
   attr_accessor   :password 
   attr_accessible :email, :name , :password , :password_confirmation 
@@ -23,10 +22,17 @@ class User < ActiveRecord::Base
   end
   
   class << self
-   def User.authenticate(email, submitted_password)
+   def User.authenticate(email, submitted_password) 
    user = User.find_by_email(email)
    return nil if user.nil?
-   return user if user.has_password?(submitted_password)  
+   return user if user.has_password?(submitted_password)
+   # this is the short way to write this above condition
+   #(user && user.has_password?(submitted_password)) ? user : nil
+   end
+   
+   def authenticate_with_salt(id, cookie_salt)
+     user = find_by_id(id)
+     (user && user.salt == cookie_salt) ? user : nil
    end
   end
 #######################

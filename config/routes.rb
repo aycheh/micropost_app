@@ -1,10 +1,10 @@
 MicropostApp::Application.routes.draw do
 
 #  get "sessions/new"
+#  get "users/new"
 
   resources :users
   resources :sessions, :only => [:new, :create, :destroy]
-#  get "users/new"
 
   root :to => 'pages#home'
   match '/contact', :to => 'pages#contact'
