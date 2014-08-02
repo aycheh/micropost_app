@@ -100,7 +100,10 @@ require 'spec_helper'
        it "should show a flash wellcome message" do
          post :create,  :user => @attr
          flash[:success].should =~ /wellcome to micropost app/i
-         
+       end
+       it "should sign-in user" do
+         post :create , :user => @attr
+         controller.should be_signed_in
        end
      end  
   end

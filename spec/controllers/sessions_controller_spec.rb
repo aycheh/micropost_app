@@ -60,11 +60,17 @@ describe SessionsController do
       post :create, :session => @attr
       controller.current_user.should == @user
     end
+    describe "DELETE 'destroy'" do
+    it "should the user log-out" do
+      test_sign_in(@user)
+      delete :destroy
+      controller.should_not be_signed_in
+      response.should redirect_to(root_path)
+    end
+    end
   end
-    
+ 
 end
-
-
 
 
 
