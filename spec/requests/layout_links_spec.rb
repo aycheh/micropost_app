@@ -68,21 +68,19 @@ require 'spec_helper'
   end
   describe "when signed-in" do
    before(:each) do
-          @user = {:name     => "new user" , 
-                   :email    => "new@user.com", 
-                   :password => "foobar", 
-                   :password_confirmation => "foobar"}                    
+          @user = User.create!(:name => "new user" , :email => "new@user.com", 
+                 :password => "foobar", 
+                 :password_confirmation => "foobar")                    
    visit signin_path
         fill_in "Email",            :with => @user.email
-        fill_in "Password",         :with => @user.password
-        click_button 
+        fill_in "Password",         :with => @user.password 
    click_button                
        end
     it "should have sign-out link" do
       response.should have_selector("a", :href => signout_path,
                                           :content => "Sign out")
     end
-    it "should hve a profile link"do
+    it "should have a profile link"do
     visit root_path
     response.should have_selector("a", :href => user_path(@user),
                                        :content => "profile")

@@ -62,10 +62,9 @@ require 'spec_helper'
   describe "POST 'create'" do
      describe "failure" do
        before(:each) do
-          @attr = {:name => "" , 
-                   :email => "", 
-                   :password => "", 
-                   :password_confirmation => ""}
+          @attr = {:name => "" , :email => "", 
+                 :password => "", 
+                 :password_confirmation => ""}
        end
         it "should have the right title " do
          post :create , :user => @attr
@@ -100,18 +99,9 @@ require 'spec_helper'
        it "should show a flash wellcome message" do
          post :create,  :user => @attr
          flash[:success].should =~ /wellcome to micropost app/i
-       end
-       it "should sign-in user" do
-         post :create , :user => @attr
-         controller.should be_signed_in
+         
        end
      end  
   end
 
 end
-
-
-
-
-
-
