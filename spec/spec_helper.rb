@@ -40,7 +40,8 @@ RSpec.configure do |config|
   
   # asher added this method for testing the signout test in sessions_controller_spec
   def test_sign_in(user)
-    controller_current_user = user
+  #  controller_current_user = user
+   controller.sign_in(user) 
   end
    
   
