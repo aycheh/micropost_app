@@ -28,7 +28,7 @@ module SessionsHelper
     cookies.delete(remember_token)
     current_user = nil
     # I added this line, it helps to see the signin link on root_path when clicking on the signout link after user signin
-    cookies.permanent.signed[:remember_token] = nil
+    cookies.permanent.signed[:remember_token] = [nil,nil]
   end
   
   private 
