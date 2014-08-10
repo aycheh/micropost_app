@@ -103,5 +103,40 @@ require 'spec_helper'
        end
      end  
   end
+  describe "GET  'edit" do
+    before(:each) do
+      @user = User.create!(
+                          :name => "asher ayche" , 
+                          :email => "asher.aycheh@gmail.com" , 
+                          :password => "foobar1" , 
+                          :password_confirmation => "foobar1")
+    test_sign_in(@user)
+    end
+    it "should be successful" do
+      get :edit , :id => @user
+      response.should be_success
+    end
+    it "should have the rigth title" do
+      get :edit , :id => @user
+      response.should have_selector('title', :content => "Edit user")
+    end
+    it "should have a link to gange the Gravatar" do
+      get :edit , :id => @user
+      response.should have_selector('a', :href =>"http://www.gravatar.com/emails",
+                                         :content => "change")
+    end
+  end
 
 end
+
+
+
+
+
+
+
+
+
+
+
+
