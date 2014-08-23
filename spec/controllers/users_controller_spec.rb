@@ -177,6 +177,24 @@ require 'spec_helper'
       end
    end
   end
+  describe "authentication of edit/update action" do
+    before(:each) do
+        @user = User.create!(
+                          :name => "asher ayche" , 
+                          :email => "asher.aycheh@gmail.com" , 
+                          :password => "foobar1" , 
+                          :password_confirmation => "foobar1")
+      end
+      it "should deny access to 'edit" do
+        get :edit , :id => @user
+        response.should redirect_to(signin_path)
+        flash[:notice].should =~/sign in/i
+      end
+      it "should deny access to 'update" do
+        put :update, :id => {} #@user
+        response.should redirect_to(signin_path)
+      end
+  end
 end
 
 
