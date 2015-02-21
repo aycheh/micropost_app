@@ -43,9 +43,9 @@ group :test, :development do
 #  gem 'simplecov'
 #  gem 'simplecov-rcov'
 #  gem 'mocha'
-   gem 'webrat'
-   gem 'nokogiri'
-   gem 'capybara'
+#   gem 'webrat'
+#   gem 'nokogiri'
+#   gem 'capybara'
    gem 'sqlite3'
 #   gem 'annotate-models'
 #   gem 'annotate-models','1.0.0', :path => "/home/asher/Source/my_apps/micropost_app/gems/"
@@ -55,7 +55,8 @@ group :production do
    gem 'webrat'
    gem 'nokogiri'
    gem 'capybara'
-   gem 'pg', '~> 0.17.1'
+#   gem 'pg', '~> 0.17.1'
+   gem 'pg'
 end
 
 
