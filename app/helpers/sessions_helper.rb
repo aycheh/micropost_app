@@ -31,6 +31,11 @@ module SessionsHelper
     cookies.permanent.signed[:remember_token] = [nil,nil]
   end
   
+  def deny_access 
+    # flash[:notice] = "please sign in to accesse this page"
+    redirect_to signin_path, :notice =>"please sign in to accesse this page"
+  end
+  
   private 
   
   def user_from_remember_token 
