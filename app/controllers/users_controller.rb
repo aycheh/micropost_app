@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_filter :authanticate, :only =>[:edit, :update]
-  
+  before_filter :correct_user , :only => [:edit, :update]
   
   def show
     @user = User.find(params[:id])
@@ -24,7 +24,7 @@ class UsersController < ApplicationController
       end
   end
   
-  def edit 
+  def edit
     @user = User.find_by_id(params[:id])
     @title = "Edit user"
   end
@@ -32,7 +32,7 @@ class UsersController < ApplicationController
   def update 
     @user = User.find_by_id(params[:id])
     if @user.update_attributes(params[:user])
-      redirect_to @user
+      redirect_to @user 
       flash[:success] = "profile updated successfuly"
     else
     @title = "Edit user"
@@ -47,6 +47,10 @@ class UsersController < ApplicationController
     deny_access unless signed_in?
   end
   
+  def correct_user
+    @user = User.find(params[:id])
+    redirect_to(root_path) unless @user == current_user
+  end
   
 end  
   

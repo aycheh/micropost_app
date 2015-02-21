@@ -185,15 +185,45 @@ require 'spec_helper'
                           :password => "foobar1" , 
                           :password_confirmation => "foobar1")
       end
-      it "should deny access to 'edit" do
+      
+  describe "nun-signed-in users " do 
+    it "should deny access to 'edit" do
         get :edit , :id => @user
         response.should redirect_to(signin_path)
         flash[:notice].should =~/sign in/i
       end
-      it "should deny access to 'update" do
+    it "should deny access to 'update" do
         put :update, :id => {} #@user
         response.should redirect_to(signin_path)
       end
+   end
+  end
+  describe "for-signin users" do 
+    before(:each) do
+     @user = User.create!(
+                          :name => "asher ayche" , 
+                          :email => "asher.aycheh@gmail.com" , 
+                          :password => "foobar1" , 
+                          :password_confirmation => "foobar1")
+     
+      @wrong_user = User.create!(
+                          :name => "asher ayche" , 
+                          :email => "wrong_user@gmail.com" , 
+                          :password => "foobar1" , 
+                          :password_confirmation => "foobar1")
+     
+     
+      test_sign_in(@user)
+    end
+    it "should require matching users for 'edit' " do
+     get :edit , :id => @wrong_user
+     response.should redirect_to(root_path)
+    end
+    
+    it "should require matching users for 'update' " do
+     put :update , :id => @wrong_user
+     response.should redirect_to(root_path) 
+    end
   end
 end
 
