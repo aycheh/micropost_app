@@ -55,7 +55,7 @@ group :production do
    gem 'webrat'
    gem 'nokogiri'
    gem 'capybara'
-#   gem 'pg', '~> 0.17.1'
+   gem 'pg', '~> 0.17.1'
 end
 
 
