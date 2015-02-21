@@ -31,6 +31,10 @@ module SessionsHelper
     cookies.permanent.signed[:remember_token] = [nil,nil]
   end
   
+  def current_user?(user)
+    user == current_user
+  end
+  
   def deny_access 
     stor_location 
     # flash[:notice] = "please sign in to accesse this page"
