@@ -10,6 +10,6 @@ module ApplicationHelper
    end
    
    def logo 
-     image_tag("logo.png" , :alt => "Micropost App" , :class => "round") 
+     image_tag("mishpaha_logo.gif" , :alt => "Micropost App" , :class => "round") 
    end 
 end
