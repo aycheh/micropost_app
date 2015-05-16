@@ -41,7 +41,7 @@ require 'spec_helper'
        get :index 
        response.should have_selector("title" , :content => "All users")
      end
-     it "houls have an element of each user" do
+     it "should have an element of each user" do
        get :index 
        User.all.each do |user|
           response.should have_selector("li" ,:content => user.name)

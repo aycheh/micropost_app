@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 ruby '1.9.3'
 gem 'rails', '3.2.13'
 gem 'rails_12factor'
+gem 'will_paginate', '~> 3.0.6'
 
 
 
@@ -42,6 +43,7 @@ gem 'gravatar_image_tag'
 # gem 'debugger'
 group :test, :development do
   gem "rspec-rails", "~> 2.6"
+  gem "faker" , '0.3.1'
 #  gem "mongoid-rspec", '1.4.5', :require=>false
 #  gem 'simplecov'
 #  gem 'simplecov-rcov'
