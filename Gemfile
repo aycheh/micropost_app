@@ -52,6 +52,7 @@ group :test, :development do
 #   gem 'nokogiri'
 #   gem 'capybara'
    gem 'sqlite3'
+   gem 'annotate'
 #   gem 'annotate-models'
 #   gem 'annotate-models','1.0.0', :path => "/home/asher/Source/my_apps/micropost_app/gems/"
 end

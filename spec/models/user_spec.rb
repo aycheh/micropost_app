@@ -1,3 +1,17 @@
+# == Schema Information
+#
+# Table name: users
+#
+#  id                 :integer          not null, primary key
+#  name               :string(255)
+#  email              :string(255)
+#  created_at         :datetime         not null
+#  updated_at         :datetime         not null
+#  encrypted_password :string(255)
+#  salt               :string(255)
+#  admin              :boolean          default(FALSE)
+#
+
 require 'spec_helper'
 
  describe User do
@@ -108,21 +122,40 @@ require 'spec_helper'
       end
      end  
  describe "user authenticate method" do
-   it "should respond_to authenticate " do
-     User.should respond_to(:authenticate)
+     it "should respond_to authenticate " do
+       User.should respond_to(:authenticate)
+     end
+     it "should return nil for an email address with no user" do
+       User.authenticate("fale@mail.com", @attr[:password])
+     end
+     it "should return the user " do
+       User.authenticate(@attr[:email], @attr[:password]).should == @user
+     end
+     it "should return nil if email/password don't match for the user" do
+      User.authenticate(@attr[:email], "passwors").should be_nil 
+     end
+   end       
+  end
+ describe "admin attribute" do
+    
+   before(:each) do 
+     @user = User.create!(@attr)
    end
-   it "should return nil for an email address with no user" do
-     User.authenticate("fale@mail.com", @attr[:password])
+   
+   it "should responce to admin" do
+     @user.should respond_to(:admin)
    end
-   it "should return the user " do
-     User.authenticate(@attr[:email], @attr[:password]).should == @user
+   
+   it "showld not be an admin br default" do
+     @user.should_not be_admin
    end
-   it "should return nil if email/password don't match for the user" do
-    User.authenticate(@attr[:email], "passwors").should be_nil 
+   
+   it "should be converted to be an admin" do
+     @user.toggle(:admin)
+     @user.should be_admin
    end
- end  
-     
-  end 
+   
+ end 
 end
 
 

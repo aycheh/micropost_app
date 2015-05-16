@@ -12,7 +12,7 @@ require 'spec_helper'
      end
    end
    
-   describe "for signed-in users" do
+ describe "for signed-in users" do
      before(:each) do
        user = User.create!(
                           :name => "asher ayche" , 
@@ -45,10 +45,26 @@ require 'spec_helper'
        get :index 
        User.all.each do |user|
           response.should have_selector("li" ,:content => user.name)
+        end
+      end 
+      it "should have a delete link for admin" do
+         @user.toggle!(:admin)
+         other_user = User.all.second
+         get :index 
+         response.should have_selector('a', :href => user_path(other_user),
+                                            :content => "delete")
        end
-     end
+      it "should not have a delete link for non-admin" do
+        other_user = User.all.second
+        get :index 
+        response.should_not have_selector('a', :href => user_path(other_user),
+                                            :content => "delete")
+      end
    end
  end 
+
+
+
   
   describe "GET 'show'" do
      before(:each) do
@@ -268,6 +284,65 @@ require 'spec_helper'
      response.should redirect_to(root_path) 
     end
   end
+  
+  describe "DELETE 'destroy'" do
+   before(:each) do
+     @user = User.create!(
+                           :name => "asher ayche" , 
+                           :email => "wrong_user@gmail.com" , 
+                           :password => "foobar1" , 
+                           :password_confirmation => "foobar1")
+     
+   end
+  
+   describe "non-sign-in user " do
+      it " should deny access " do
+      delete :destroy ,:id =>  @user
+      response.should redirect_to(signin_path)  
+      end   
+    end 
+   end
+   describe "as non-admin user" do
+     it " should deny access " do
+     @user = User.create!(
+                          :name => "asher ayche" , 
+                          :email => "asher.aycheh@gmail.com" , 
+                          :password => "foobar1" , 
+                          :password_confirmation => "foobar1")
+     test_sign_in(@user) 
+     delete :destroy ,:id =>  @user
+     response.should redirect_to(root_path)  
+     end   
+    end 
+    describe "as non-admin user" do
+      before(:each) do 
+      @admin = User.create!(
+                           :name => "asher ayche" , 
+                           :email => "admin@gmail.com" , 
+                           :password => "foobar1" , 
+                           :password_confirmation => "foobar1",
+                           :admin => true)
+     @user = User.create!(
+                           :name => "asher ayche" , 
+                           :email => "asher.aycheh@gmail.com" , 
+                           :password => "foobar1" , 
+                           :password_confirmation => "foobar1")
+      test_sign_in(@admin)  
+      end
+      it "should destroy the user " do
+        lambda do
+            delete :destroy,  :id => @user
+          end.should change(User, :count).by(-1) 
+      end
+      it "should redirect to users page" do
+        delete :destroy , :id => @user
+      end
+      it "shoul not destroy itself" do
+        lambda do
+        delete :destroy ,:id => @admin
+        end.should_not change(User , :count)
+      end
+    end   
 end
 
 
