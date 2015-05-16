@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe "FriendlyForwardings" do
   it "should forward to the requested page after signin" do
-      user = User.create(           :name => "asher ayche" , 
+      user = User.create( :name => "asher ayche" , 
                           :email => "asher.aycheh@gmail.com" , 
                           :password => "foobar1" , 
                           :password_confirmation => "foobar1")

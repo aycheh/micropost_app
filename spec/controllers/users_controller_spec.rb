@@ -1,11 +1,54 @@
 require 'spec_helper'
 #require 'factories.rb'
 #require 'factory_girl_rails'
-
-
-
  describe UsersController do
   render_views
+  
+ describe "GET 'index' " do
+   describe "for non-signed-in users " do
+     it "should deny access " do
+       get :index
+       response.should redirect_to(signin_path)
+     end
+   end
+   
+   describe "for signed-in users" do
+     before(:each) do
+       user = User.create!(
+                          :name => "asher ayche" , 
+                          :email => "asher.aycheh@gmail.com" , 
+                          :password => "foobar1" , 
+                          :password_confirmation => "foobar1")
+       @user = test_sign_in(user)
+       user_1 = User.create!(
+                          :name => "asher ayche" , 
+                          :email => "asher.user_1@gmail.com" , 
+                          :password => "foobar1" , 
+                          :password_confirmation => "foobar1")
+                          
+       user_2 = User.create!(
+                          :name => "asher ayche" , 
+                          :email => "user_2@gmail.com" , 
+                          :password => "foobar1" , 
+                          :password_confirmation => "foobar1")
+                          
+     end
+     it "should be successful" do
+       get :index 
+       response.should be_success
+     end
+     it "should have the right title " do
+       get :index 
+       response.should have_selector("title" , :content => "All users")
+     end
+     it "houls have an element of each user" do
+       get :index 
+       User.all.each do |user|
+          response.should have_selector("li" ,:content => user.name)
+       end
+     end
+   end
+ end 
   
   describe "GET 'show'" do
      before(:each) do
@@ -162,8 +205,8 @@ require 'spec_helper'
         put :update, :id => @user, :user => @attr
         user = assigns(:user) 
         @user.reload
-        #@user.name.should == user.name
-        @user.email.should == user.email 
+        @user.name.should == user.name && @user.email.should == user.email 
+          
       end
       it "should change the user attribute " do
         put :update, :id => @user, :user => @attr

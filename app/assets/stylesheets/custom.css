@@ -181,8 +181,14 @@ div.field , div.actions {
 	/*list-style: armenian*/;
 }
 
+ul.users {
+	margin_top: 1em;
+	
+}
 
-
+ul.users li{
+		list-style: none
+}
 
 
 
