@@ -43,7 +43,7 @@ gem 'gravatar_image_tag'
 # gem 'debugger'
 group :test, :development do
   gem "rspec-rails", "~> 2.6"
-  gem "faker" , '0.3.1'
+  #gem "faker" , '0.3.1'
 #  gem "mongoid-rspec", '1.4.5', :require=>false
 #  gem 'simplecov'
 #  gem 'simplecov-rcov'
