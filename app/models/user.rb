@@ -16,7 +16,11 @@ class User < ActiveRecord::Base
 # virtual attributes  
 # attr_accessor   :password ,:password_confirmation
   attr_accessor   :password 
-  attr_accessible :email, :name , :password , :password_confirmation , :admin
+  attr_accessible :email, :name , :password , :password_confirmation , :admin 
+  has_many :microposts , :dependent => :destroy 
+
+
+
   email_regex = /\A[\w.+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   
   validates :name , :presence => true ,

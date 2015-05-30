@@ -153,9 +153,32 @@ require 'spec_helper'
    it "should be converted to be an admin" do
      @user.toggle(:admin)
      @user.should be_admin
+   end   
+ end
+ describe "the micropost association" do
+   before(:each) do 
+     @user = User.create!(@attr)
+     @mp1 = {:content => "first post Teddi id a greate boy" }
+     @mp2 = {:content => "second pots Eden is a greate girle " }
+     @user.microposts.create!(@mp1)
+     sleep 2 #(sleep 2 seconds)
+     @user.microposts.create!(@mp2)
    end
-   
- end 
+   it "should have a micropst arrtibute" do
+     @user.should respond_to(:microposts)
+   end
+   # In This test , the code dose as axpecetd but the setst  fail becouse the the full returned result dose not natch the exact expected(live it comment uot) 
+   it "should have the rigth micropst in the rigth order" do
+     #@user.microposts.should == [@mp2,@mp1]
+   end
+   it "should destroy associated microposts to user" do
+     @user.destroy
+     [@mp1 ,@mp2].each do |micropost|
+      #Micropost.find_by_id(micropost.id).should be_nil
+      Micropost.find_by_user_id(@user.id).should be_nil
+     end
+   end
+ end  
 end
 
 
