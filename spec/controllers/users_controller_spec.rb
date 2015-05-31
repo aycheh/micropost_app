@@ -355,13 +355,14 @@ require 'spec_helper'
   it "should shows the user's microposts" do
      mp1 = @user.microposts.create!(@post_attr_1)
      mp2 = @user.microposts.create!(@post_attr_2)
-     p "=================================================================================================" ,mp1
+     get :show, :id => @user
      response.should have_selector('span.content', :content => mp1.content)
      response.should have_selector('span.content', :content => mp2.content)
   end
  end
 end
 end
+
 
 
 
