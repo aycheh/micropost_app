@@ -62,11 +62,7 @@ require 'spec_helper'
       end
    end
  end 
-
-
-
-  
-  describe "GET 'show'" do
+ describe "GET 'show'" do
      before(:each) do
       #    @user = Factory(:user)
       #    @user = FactoryGirl(:User)
@@ -75,6 +71,7 @@ require 'spec_helper'
                           :email => "asher.aycheh@gmail.com" , 
                           :password => "foobar1" , 
                           :password_confirmation => "foobar1")
+     
                            
       end
       
@@ -103,10 +100,11 @@ require 'spec_helper'
       get :show ,:id => @user
       response.should have_selector('td>a', :content => user_path(@user),
                                             :href    => user_path(@user) )
+     end
+     it "shows the users microposts" do
+       
      end                                            
   end
-  
-  
  describe "GET 'new'" do
     it "returns http success" do
       get :new
@@ -118,7 +116,7 @@ require 'spec_helper'
                                     :content =>"Sign up")
     end    
   end
-  describe "POST 'create'" do
+ describe "POST 'create'" do
      describe "failure" do
        before(:each) do
           @attr = {:name => "" , :email => "", 
@@ -162,7 +160,7 @@ require 'spec_helper'
        end
      end  
   end
-  describe "GET  'edit" do
+ describe "GET  'edit" do
     before(:each) do
       @user = User.create!(
                           :name => "asher ayche" , 
@@ -185,7 +183,7 @@ require 'spec_helper'
                                          :content => "change")
     end
   end
-  describe "PUT 'update'" do
+ describe "PUT 'update'" do
       before(:each) do
         @user = User.create!(
                           :name => "asher ayche" , 
@@ -194,7 +192,7 @@ require 'spec_helper'
                           :password_confirmation => "foobar1")
       test_sign_in(@user)
       end
-    describe "update failure" do
+ describe "update failure" do
       before(:each) do 
         @attr = {:name => "" , :email => "", 
                  :password => "", 
@@ -209,7 +207,7 @@ require 'spec_helper'
         response.should have_selector('title', :content =>"Edit user")
       end
     end
-   describe "update success" do
+ describe "update success" do
      before(:each) do 
         @attr = {:name => "new name",
                  :email => "asher.aycheh@gmail.net", 
@@ -236,7 +234,7 @@ require 'spec_helper'
       end
    end
   end
-  describe "authentication of edit/update action" do
+ describe "authentication of edit/update action" do
     before(:each) do
         @user = User.create!(
                           :name => "asher ayche" , 
@@ -257,7 +255,7 @@ require 'spec_helper'
       end
    end
   end
-  describe "for-signin users" do 
+ describe "for-signin users" do 
     before(:each) do
      @user = User.create!(
                           :name => "asher ayche" , 
@@ -285,7 +283,7 @@ require 'spec_helper'
     end
   end
   
-  describe "DELETE 'destroy'" do
+ describe "DELETE 'destroy'" do
    before(:each) do
      @user = User.create!(
                            :name => "asher ayche" , 
@@ -302,7 +300,7 @@ require 'spec_helper'
       end   
     end 
    end
-   describe "as non-admin user" do
+ describe "as non-admin user" do
      it " should deny access " do
      @user = User.create!(
                           :name => "asher ayche" , 
@@ -314,7 +312,7 @@ require 'spec_helper'
      response.should redirect_to(root_path)  
      end   
     end 
-    describe "as non-admin user" do
+ describe "as non-admin user" do
       before(:each) do 
       @admin = User.create!(
                            :name => "asher ayche" , 
@@ -342,7 +340,27 @@ require 'spec_helper'
         delete :destroy ,:id => @admin
         end.should_not change(User , :count)
       end
-    end   
+    end
+ describe "GET 'show'" do   
+ describe "users microposts" do
+   before(:each) do 
+    @user_attr = {:name => "asher" , 
+                  :email => "asher@gmail.com",
+                  :password => "foobar" ,
+                  :password_confirmation => "foobar"}
+    @user = User.create!(@user_attr)
+    @post_attr_1 = {:content => "lorem ipsum first " }
+    @post_attr_2 = {:content => "lorem ipsum second" }
+  end
+  it "should shows the user's microposts" do
+     mp1 = @user.microposts.create!(@post_attr_1)
+     mp2 = @user.microposts.create!(@post_attr_2)
+     p "=================================================================================================" ,mp1
+     response.should have_selector('span.content', :content => mp1.content)
+     response.should have_selector('span.content', :content => mp2.content)
+  end
+ end
+end
 end
 
 
